@@ -57,7 +57,7 @@ cassandra:
   # The Cassandra protocol version (default 4)
   proto-version: 4
   # The comma-separated list of Cassandra servers (default "127.0.0.1")
-  servers: 127.0.0.1
+  servers: 10.244.18.1
   # Cassandra's keepalive period to use, enabled if > 0 (default 0s)
   socket-keep-alive: 0s
   # Timeout used for queries (default 0s)
