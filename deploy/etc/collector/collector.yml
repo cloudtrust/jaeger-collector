@@ -45,7 +45,7 @@ cassandra:
   # The number of Cassandra connections from a single backend instance (default 2)
   connections-per-host: 2
   # The Cassandra keyspace for Jaeger data (default "jaeger_v1_local")
-  keyspace: jaeger_v1_local
+  keyspace: jaeger_v1_test
   # The number of attempts when reading from Cassandra (default 3)
   max-retry-attempts: 3
   # Username for password authentication for Cassandra
