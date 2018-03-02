@@ -13,7 +13,7 @@ The collector configuration file is in `https://github.com/cloudtrust/dev-config
 mkdir build_context
 cp dockerfiles/cloudtrust-jaeger-collector.dockerfile build_context/
 # Build image
-docker build --build-arg jaeger_collector_git_tag=<jaeger_collector_git_tag> --build-arg jaeger_release=<jaeger_release> --build-arg config_env=<config_env> --build-arg config_git_tag=<config_git_tag> --build-arg config_repo=<config_repo> -t cloudtrust-jaeger-collector -f cloudtrust-jaeger-collector.dockerfile .
+docker build --build-arg jaeger_collector_git_tag=<jaeger_collector_git_tag> --build-arg jaeger_release=<jaeger_release> --build-arg config_git_tag=<config_git_tag> --build-arg config_repo=<config_repo> -t cloudtrust-jaeger-collector -f cloudtrust-jaeger-collector.dockerfile .
 # Create container
 docker create --tmpfs /tmp --tmpfs /run -v /sys/fs/cgroup:/sys/fs/cgroup:ro -p 14267:14267 --name jaeger-collector-1 cloudtrust-jaeger-collector
 ```
