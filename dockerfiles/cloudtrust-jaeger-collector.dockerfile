@@ -24,11 +24,8 @@ RUN git checkout ${jaeger_collector_git_tag}
 WORKDIR /cloudtrust/jaeger-collector
 # Install regular stuff. Systemd, monit...
 RUN install -v -m0644 deploy/etc/security/limits.d/* /etc/security/limits.d/ && \
-    install -v -m0644 deploy/etc/monit.d/* /etc/monit.d/ && \
-    install -v -o collector -g collector -m 644 deploy/etc/systemd/system/collector.service /etc/systemd/system/collector.service && \
-    install -v -o root -g root -m 644 -d /etc/systemd/system/collector.service.d && \
-    install -v -o root -g root -m 644 deploy/etc/systemd/system/collector.service.d/limit.conf /etc/systemd/system/collector.service.d/limit.conf
-
+    install -v -m0644 deploy/etc/monit.d/* /etc/monit.d/ 
+    
 ##
 ##  JAEGER COLLECTOR
 ##
@@ -41,10 +38,10 @@ RUN wget ${jaeger_release} -O jaeger.tar.gz && \
     rm jaeger.tar.gz && \
     rm -rf jaeger/
 
-WORKDIR /cloudtrust/keycloak-service
-RUN install -v -o agent -g agent -m 644 deploy/etc/systemd/system/agent.service /etc/systemd/system/agent.service && \
-    install -d -v -o root -g root -m 644 /etc/systemd/system/agent.service.d && \
-    install -v -o root -g root -m 644 deploy/etc/systemd/system/agent.service.d/limit.conf /etc/systemd/system/agent.service.d/limit.conf
+WORKDIR /cloudtrust/jaeger-collector
+RUN install -v -o collector -g collector -m 644 deploy/etc/systemd/system/collector.service /etc/systemd/system/collector.service && \
+    install -d -v -o root -g root -m 644 /etc/systemd/system/collector.service.d && \
+    install -v -o root -g root -m 644 deploy/etc/systemd/system/collector.service.d/limit.conf /etc/systemd/system/collector.service.d/limit.conf
 
 ##
 ##  CONFIG
