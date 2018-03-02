@@ -6,7 +6,7 @@ After=network.target
 Type=simple
 User=collector
 Group=collector
-ExecStart=/etc/collector/collector --config-file /etc/collector/collector.yml
+ExecStart=/opt/collector/collector --config-file /etc/collector/collector.yml
 
 [Install]
 WantedBy=multi-user.target
