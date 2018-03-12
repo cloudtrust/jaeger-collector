@@ -5,7 +5,7 @@ ARG jaeger_release
 ARG config_git_tag
 ARG config_repo
 
-# Get dependencies and put jaeger query where we expect it to be
+# Get dependencies and put jaeger collector where we expect it to be
 RUN dnf -y install nginx && \
     dnf clean all
 
