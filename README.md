@@ -1,6 +1,6 @@
 # Jaeger collector
 
-Jaeger collector processes and stores traces obtained from the Jaeger agents.
+The Jaeger collector processes and stores traces obtained from the Jaeger agents.
 
 This repository contains our jaeger-collector dockerfile. For our needs, it makes sense to have as little dynamic parts as possible. We only need to manage the Jaeger collector's configuration.
 
@@ -20,3 +20,6 @@ docker run --rm -it --net=ct_bridge --tmpfs /tmp --tmpfs /run -v /sys/fs/cgroup:
 ```
 
 Note that the storage backend must be available and correctly configured, otherwise the Jaeger collector won't work. See the cloudtrust [elasticsearch-data-service](https://github.com/cloudtrust/elasticsearch-data-service) repository for more information on the storage.
+
+## Configuration
+The Jaeger collector is configured with the file `deploy/etc/jaeger-query/query.yml` from the [configuration](https://github.com/cloudtrust/dev-config) repository.
