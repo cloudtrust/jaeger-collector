@@ -1,28 +1,22 @@
 # Jaeger collector
-Jaeger collector is a docker container containing the Jaeger collector. It processes and stores traces traces obtained from the agents.
 
-![tracing](https://github.com/cloudtrust/doc/tree/gh-pages/graphics/tracing.png)
+Jaeger collector processes and stores traces obtained from the Jaeger agents.
 
-## Configuration
+This repository contains our jaeger-collector dockerfile. For our needs, it makes sense to have as little dynamic parts as possible. We only need to manage the Jaeger collector's configuration.
 
-The collector configuration file is in `https://github.com/cloudtrust/dev-config/blob/master/deploy/int/etc/jaeger-collector/collector.yml`.
+## Building the dockerfile
 
-## Build
+We recommend running the build tasks via our deployment procedure, but in case you want to build it yourself, there are many build arguments to pass. You can learn about them by reading the dockerfile.
 
-```bash
-mkdir build_context
-cp dockerfiles/cloudtrust-jaeger-collector.dockerfile build_context/
-# Build image
-docker build --build-arg jaeger_collector_git_tag=<jaeger_collector_git_tag> --build-arg jaeger_release=<jaeger_release> --build-arg config_git_tag=<config_git_tag> --build-arg config_repo=<config_repo> -t cloudtrust-jaeger-collector -f cloudtrust-jaeger-collector.dockerfile .
-# Create container
-docker create --tmpfs /tmp --tmpfs /run -v /sys/fs/cgroup:/sys/fs/cgroup:ro -p 14267:14267 --name jaeger-collector-1 cloudtrust-jaeger-collector
+## Running jaeger-collector
+
+Depending on the config repo, the container could expect some names to be reachable. Refer to the specifics of the configuration repo.
+
+An example run command should look like
+
+```Bash
+# Run the container
+docker run --rm -it --net=ct_bridge --tmpfs /tmp --tmpfs /run -v /sys/fs/cgroup:/sys/fs/cgroup:ro --name jaeger-collector cloudtrust-jaeger-collector
 ```
 
-## Usage
-Start the collector container: 
-```bash
-docker start jaeger-collector-1
-```
-
-Note that the storage backend must be available and correctly configured, otherwise the Jaeger collector won't work.
-
+Note that the storage backend must be available and correctly configured, otherwise the Jaeger collector won't work. See the cloudtrust [elasticsearch-data-service](https://github.com/cloudtrust/elasticsearch-data-service) repository for more information on the storage.
