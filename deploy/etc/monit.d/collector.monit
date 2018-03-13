@@ -1,0 +1,4 @@
+check process collector matching "collector"
+  start program = "/usr/bin/systemctl start collector.service"
+  stop program = "/usr/bin/systemctl stop collector.service"
+  if failed host 127.0.0.1 port 14269 then restart

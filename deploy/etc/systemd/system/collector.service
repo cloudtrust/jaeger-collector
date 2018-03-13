@@ -1,0 +1,12 @@
+[Unit]
+Description=Jaeger tracing collector
+After=network.target
+
+[Service]
+Type=simple
+User=collector
+Group=collector
+ExecStart=/opt/collector/collector --config-file /etc/collector/collector.yml
+
+[Install]
+WantedBy=multi-user.target
