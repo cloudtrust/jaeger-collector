@@ -6,6 +6,7 @@ After=network.target
 Type=simple
 User=collector
 Group=collector
+Environment=SPAN_STORAGE_TYPE="elasticsearch"
 ExecStart=/opt/collector/collector --config-file /etc/collector/collector.yml
 
 [Install]
