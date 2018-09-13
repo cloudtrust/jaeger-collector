@@ -1,7 +1,7 @@
 FROM cloudtrust-baseimage:f27
 
 ARG jaeger_collector_git_tag
-ARG jaeger_release
+ARG jaeger_release=1.2.0
 ARG config_git_tag
 ARG config_repo
 
